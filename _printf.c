@@ -5,7 +5,8 @@
 #include <stdlib.h>
 int _printf(const char *format, ...);
 int _printf_char(unsigned int *a, char b);
-int _printf(const char *format, ...){
+int _printf(const char *format, ...);
+{
     
 	unsigned int i, k = 0;
 	va_list ptr;
