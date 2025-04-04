@@ -18,4 +18,5 @@ int _printf(const char *format, ...)
 		}
 	}
 	va_end(ptr);
-return(0);write(1, &format[i], 1), k++;
+return(0);
+}
