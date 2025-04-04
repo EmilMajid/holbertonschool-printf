@@ -20,8 +20,9 @@ int _print_s(unsigned int *a, char *b)
 		{
 			write(1, (b + i), 1);
 			i++;
-			(*a)++;
 		}
+			*a += i;
+		
 	}
 	return (*a);
 }
