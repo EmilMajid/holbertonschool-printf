@@ -12,6 +12,21 @@ int _printf(const char *format, ...)
 			k = _printf_char(&k, va_arg(ptr, int));
 			i++;
 		}
+		else if(format[i]=='%'&&format[i+1]=='s')
+		{
+			k = _printf_char(&k, va_arg(ptr, int));
+			i++;
+		}
+		else if(format[i]=='%'&&format[i+1]=='d'&&format[i+1]=='i')
+		{
+			k = _printf_char(&k, va_arg(ptr, int));
+			i++;
+		}
+		else if(format[i]=='%'&&format[i+1]=='%')
+		{
+			_putchar('%');
+			i++;
+		}
 		else
 		{
 			write(1, &format[i], 1), k++;
