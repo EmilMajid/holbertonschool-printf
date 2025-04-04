@@ -1,7 +1,12 @@
 #include "main.h"
 #include <stdarg.h>
-
-int _printf(const char *format, ...) {
+/**
+ * _printf - this is mini version of ptintf(3) function
+ * @format: a character string
+ * Return: the number of characters printed
+ */
+int _printf(const char *format, ...)
+{
 
 
 	int i = 0;
@@ -31,5 +36,4 @@ int _printf(const char *format, ...) {
 	}
 	va_end(args);
 	return (len);
-
 }
