@@ -1,37 +1,35 @@
 #include "main.h"
-int _printf(const char *format, ...)
-{
-	unsigned int i, k = 0;
-	va_list ptr;
-	va_start(ptr, format);
+#include <stdarg.h>
 
-	for (i = 0; format != NULL && format[i] != '\0'; i++)
+int _printf(const char *format, ...) {
+
+
+	int i = 0;
+	unsigned int len = 0;
+	va_list args;
+
+	va_start(args, format);
+	while (format[i])
 	{
-		if(format[i]=='%'&&format[i+1]=='c')
-		{
-			k = _printf_char(&k, va_arg(ptr, int));
-			i++;
-		}
-		else if(format[i]=='%'&&format[i+1]=='s')
-		{
-			k = _printf_char(&k, va_arg(ptr, int));
-			i++;
-		}
-		else if(format[i]=='%'&&format[i+1]=='d'&&format[i+1]=='i')
-		{
-			k = _printf_char(&k, va_arg(ptr, int));
-			i++;
-		}
-		else if(format[i]=='%'&&format[i+1]=='%')
-		{
-			_putchar('%');
-			i++;
-		}
+		if (format[i] == '%' && format[i + 1] == 'c')
+			len += _putchar(va_arg(args, int)), i += 2;
+
+		else if (format[i] == '%' && format[i + 1] == 's')
+			len += print_string(va_arg(args, char *)), i += 2;
+
+		else if (format[i] == '%' && format[i + 1] == '%')
+			len += _putchar('%'), i += 2;
+
+		else if (format[i] == '%' && format[i + 1] == '\0')
+			len--, i++;
+
+		else if (format[i] == '%' && (format[i + 1] == 'd' || format[i + 1] == 'i'))
+			len += print_number(va_arg(args, int)), i += 2;
+
 		else
-		{
-			write(1, &format[i], 1), k++;
-		}
+			len += _putchar(format[i]), i++;
 	}
-	va_end(ptr);
-return(0);
+	va_end(args);
+	return (len);
+
 }
